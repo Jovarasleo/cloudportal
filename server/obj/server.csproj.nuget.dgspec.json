@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Ugnė\\Desktop\\Darbas\\cloudportal\\server\\server.csproj": {}
+    "c:\\Users\\Ugnė\\Desktop\\Darbas\\cloudportal\\server\\server.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Ugnė\\Desktop\\Darbas\\cloudportal\\server\\server.csproj": {
+    "c:\\Users\\Ugnė\\Desktop\\Darbas\\cloudportal\\server\\server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Ugnė\\Desktop\\Darbas\\cloudportal\\server\\server.csproj",
+        "projectUniqueName": "c:\\Users\\Ugnė\\Desktop\\Darbas\\cloudportal\\server\\server.csproj",
         "projectName": "server",
-        "projectPath": "C:\\Users\\Ugnė\\Desktop\\Darbas\\cloudportal\\server\\server.csproj",
+        "projectPath": "c:\\Users\\Ugnė\\Desktop\\Darbas\\cloudportal\\server\\server.csproj",
         "packagesPath": "C:\\Users\\Ugnė\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Ugnė\\Desktop\\Darbas\\cloudportal\\server\\obj\\",
+        "outputPath": "c:\\Users\\Ugnė\\Desktop\\Darbas\\cloudportal\\server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Ugnė\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -43,6 +43,10 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.4.0, )"
