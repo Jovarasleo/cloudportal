@@ -47,7 +47,7 @@ static void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     });
 }
 
-Configure(app, app.Environment);
+
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -57,7 +57,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
+Configure(app, app.Environment);
 app.MapControllers();
 
 app.Run();

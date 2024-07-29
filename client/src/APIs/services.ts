@@ -1,8 +1,9 @@
 import { api } from "./api";
+const apiPassword = import.meta.env.VITE_API_PASSWORD;
 
 export async function startTorrentService(setData: (data: unknown) => unknown) {
-  const toggleTorrentService = api.get({
-    url: "http://localhost:5126/StartStopServices/control?action=stop&serviceName=transmission",
+  const toggleTorrentService = api.post({
+    url: `https://localhost:7019/StartStopServices/control?action=stop&serviceName=transmission-daemon&sudoPassword=${apiPassword}`,
     callback: setData,
   });
 
