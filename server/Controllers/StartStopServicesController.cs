@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-
 namespace server.Controllers
+
 {
     [ApiController]
     [Route("[controller]")]
@@ -17,17 +17,17 @@ namespace server.Controllers
         }
 
         [HttpPost("control")]
-        public IActionResult ControlService([FromQuery] string action, [FromQuery] string serviceName)
+        public IActionResult ControlService([FromQuery] string action, [FromQuery] string serviceName, [FromQuery] string sudoPassword)
         {
-            if (string.IsNullOrWhiteSpace(action) || string.IsNullOrWhiteSpace(serviceName))
+            if (string.IsNullOrWhiteSpace(action) || string.IsNullOrWhiteSpace(serviceName) || string.IsNullOrWhiteSpace(sudoPassword))
             {
-                return BadRequest("Action and service name must be provided.");
+                return BadRequest("Action, service name, and sudo password must be provided.");
             }
 
-            string? command = action.ToLower() switch
+            string command = action.ToLower() switch
             {
-                "start" => $"sudo systemctl start {serviceName}",
-                "stop" => $"sudo systemctl stop {serviceName}",
+                "start" => $"service {serviceName} start",
+                "stop" => $"service {serviceName} stop",
                 _ => null
             };
 
@@ -41,14 +41,15 @@ namespace server.Controllers
                 ProcessStartInfo psi = new ProcessStartInfo
                 {
                     FileName = "/bin/bash",
-                    Arguments = $"-c \"{command}\"",
+                    Arguments = $"-c \"echo {sudoPassword} | sudo -S {command}\"",
                     RedirectStandardOutput = true,
                     RedirectStandardError = true,
+                    RedirectStandardInput = true,
                     UseShellExecute = false,
                     CreateNoWindow = true
                 };
 
-                using (Process? process = Process.Start(psi))
+                using (Process process = Process.Start(psi))
                 {
                     if (process == null)
                     {
